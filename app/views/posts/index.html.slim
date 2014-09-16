@@ -1,0 +1,33 @@
+h1
+  = current_user.name
+  | の最近の試合
+table
+  thead
+    tr
+      th
+        | 日付
+      th
+        | 対戦相手
+      th
+        | 結果
+      th
+      th
+      th
+  tbody
+    - @posts.each do |post|
+      tr
+        td
+          = post.title
+        td
+          = post.contributer
+        td
+          = post.body
+        td
+          = link_to 'Show', post
+        td
+          = link_to 'Edit', edit_post_path(post)
+        td
+          = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+br
+= link_to 'Sign out', destroy_user_session_path, :method => :delete
+= link_to 'New Post', new_post_path
