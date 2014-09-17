@@ -2,8 +2,8 @@ h1
   = current_user.name
   | の最近の試合！
 
-= form_for(@myteam) do |f|
 
+= form_tag '/myteam', method: :post do
   = text_field_tag :name, "", size: 30
   = submit_tag "OK"
 
