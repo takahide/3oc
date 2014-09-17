@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    @myteam = User.find_by_username current_user.username
   end
 
   # GET /posts/1

@@ -3,6 +3,6 @@ class TeamsController < ApplicationController
     @teams=User.all
   end
   def index
-    @teams=User.where "username=?", params[:id]
+    @team=User.find_by_username params[:id]
   end
 end

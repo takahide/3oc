@@ -1,6 +1,12 @@
 h1
   = current_user.name
-  | の最近の試合
+  | の最近の試合！
+
+= form_for(@myteam) do |f|
+
+  = text_field_tag :name, "", size: 30
+  = submit_tag "OK"
+
 table
   thead
     tr
