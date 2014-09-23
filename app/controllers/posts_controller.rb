@@ -2,13 +2,6 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  # GET /posts
-  # GET /posts.json
-  def index
-    @posts = Post.all
-    @myteam = User.find_by_username current_user.username
-  end
-
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -30,11 +23,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
+        format.html { redirect_to '/my/team' }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.html { redirect_to '/my/team' }
       end
     end
   end
@@ -44,11 +35,9 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to '/my/team' }
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.html { redirect_to '/my/team' }
       end
     end
   end

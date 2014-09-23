@@ -8,16 +8,16 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    "/posts"
+    create_team_path
   end
 
   def after_sign_out_path_for(resource)
-    "/posts"
+    myteam_path
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:subdomain, :username, :email, :password, :password_confirmation) }
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:subdomain, :username, :email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:subdomain, :username, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:subdomain, :username, :password, :remember_me) }
   end
 end
 

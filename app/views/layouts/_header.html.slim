@@ -2,6 +2,8 @@ div style="background: #fcc;"
   p ここはヘッダです。メニューバーで隠してください。
   ul
     - if user_signed_in?
-      li = link_to "マイチーム（#{current_user.name}）を見る", "/#{current_user.username}"
+      li = link_to "マイチーム（#{@team.name}）を見る", "/#{current_user.username}"
+      li = link_to "マイチーム（#{@team.name}）の編集", myteam_path
+      li = link_to 'ログアウト', destroy_user_session_path, :method => :delete
     - else
-      li = link_to "ログイン", "/posts"
+      li = link_to "ログイン", myteam_path

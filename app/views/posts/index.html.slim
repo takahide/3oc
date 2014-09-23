@@ -1,39 +1,56 @@
-h1
-  = current_user.name
+h1 = current_user.name
   | の最近の試合！
 
-
-= form_tag '/myteam', method: :post do
+p チーム名の変更
+= form_tag '/users/myteam', method: :post do
   = text_field_tag :name, "", size: 30
   = submit_tag "OK"
 
 table
   thead
     tr
+      th 選手名
+      th 背番号
       th
-        | 日付
       th
-        | 対戦相手
       th
-        | 結果
+       
+  tbody
+    - @players.each do |player|
+      tr
+        td = player.number
+        td = player.name
+        = form_for(player) do |e|
+          td = e.text_field :name
+          td = e.text_field :number
+          td = e.submit
+
+p 選手の追加
+= form_for(@player) do |f|
+  = f.text_field :name
+  = f.text_field :number
+  = f.submit
+
+
+
+
+table
+  thead
+    tr
+      th 日付
+      th 対戦相手
+      th 結果
       th
       th
       th
   tbody
     - @posts.each do |post|
       tr
-        td
-          = post.title
-        td
-          = post.contributer
-        td
-          = post.body
-        td
-          = link_to 'Show', post
-        td
-          = link_to 'Edit', edit_post_path(post)
-        td
-          = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+        td = post.title
+        td = post.contributer
+        td = post.body
+        td = link_to '詳細', post
+        td = link_to '編集', edit_post_path(post)
+        td = link_to '削除', post, method: :delete, data: { confirm: '削除します。よろしいですか？' }
 br
-= link_to 'Sign out', destroy_user_session_path, :method => :delete
 = link_to 'New Post', new_post_path
