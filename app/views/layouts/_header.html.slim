@@ -1,0 +1,7 @@
+div style="background: #fcc;"
+  p ここはヘッダです。メニューバーで隠してください。
+  ul
+    - if user_signed_in?
+      li = link_to "マイチーム（#{current_user.name}）を見る", "/#{current_user.username}"
+    - else
+      li = link_to "ログイン", "/posts"

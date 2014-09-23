@@ -1,0 +1,15 @@
+div class="navbar"
+  div class="navbar-inner"
+      div class='left'
+              a href='#' class='link icon-only open-panel'
+              i class='icon icon-bars-blue'
+          div class='center'
+              All posts
+
+
+  div class="pages navbar-through toolbar-through"
+      div class='page'>
+       ul
+        - @teams.each do |team|
+            - t = team.username
+            li = link_to t,  "/#{t}"
