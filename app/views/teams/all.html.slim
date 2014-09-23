@@ -1,4 +1,3 @@
 ul
   - @teams.each do |team|
-    - t = team.username
-    li = link_to t, "/#{t}"
+    li = link_to team.name, "/#{team.url}"

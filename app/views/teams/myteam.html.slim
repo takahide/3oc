@@ -1,0 +1,59 @@
+h1 #{@team.name}のページ
+
+= form_for(@team) do |f|
+  = f.text_field :name
+  = f.text_field :url
+  = f.submit "チーム情報を更新"
+
+table
+  thead
+    tr
+      th 選手名
+      th 背番号
+      th
+      th
+      th
+       
+  tbody
+    - @players.each do |player|
+      tr
+        td = player.number
+        td = player.name
+        = form_for(player) do |e|
+          td = e.text_field :name
+          td = e.text_field :number
+          td = e.submit "プレイヤー情報を更新"
+
+p 選手の追加
+= form_for(@new_player) do |f|
+  = f.text_field :name
+  = f.text_field :number
+  = f.submit "プレイヤーを追加"
+
+table
+  thead
+    tr
+      th 日付
+      th 対戦相手
+      th 結果
+      th
+      th
+      th
+  tbody
+    - @posts.each do |post|
+      tr
+        td = post.title
+        td = post.contributer
+        td = post.body
+        = form_for(post) do |e|
+          td = e.text_field :title
+          td = e.text_field :contributer
+          td = e.text_field :body
+          td = e.submit "試合結果を更新"
+
+p 試合の追加
+= form_for(@new_post) do |f|
+  = f.text_field :title
+  = f.text_field :contributer
+  = f.text_field :body
+  = f.submit "試合結果を追加"

@@ -1,12 +1,14 @@
 Baseball::Application.routes.draw do
   resources :posts
-
+  resources :players
+  resources :teams
+  get '/team/create', to: 'teams#create', as: 'create_team'
   devise_for :users
 
-  get '/', to: 'teams#all'
-  get '/:id', to: 'teams#index'
+  get '/my/team', to: 'teams#myteam', as: 'myteam'
+  get '/', to: 'teams#all', as: 'team_list'
+  get '/:id', to: 'teams#show', as: 'team_page'
 
-  post '/myteam', to: 'myteam#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
