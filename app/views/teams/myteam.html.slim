@@ -1,8 +1,16 @@
 h1 #{@team.name}のページ
 
+= image_tag "logos/#{@team.url}.jpg", width: "300"
+
 = form_for(@team) do |f|
+  p チーム名
   = f.text_field :name
+  p チームURL
   = f.text_field :url
+  p チームカラー（1:赤、2:黄色、...）
+  = f.text_field :color
+  p チームロゴのアップロード
+  = f.file_field :logo, accept: "image/jpeg"
   = f.submit "チーム情報を更新"
 
 table
@@ -20,14 +28,14 @@ table
         td = player.number
         td = player.name
         = form_for(player) do |e|
-          td = e.text_field :name
           td = e.text_field :number
+          td = e.text_field :name
           td = e.submit "プレイヤー情報を更新"
 
 p 選手の追加
 = form_for(@new_player) do |f|
-  = f.text_field :name
   = f.text_field :number
+  = f.text_field :name
   = f.submit "プレイヤーを追加"
 
 table

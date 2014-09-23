@@ -35,6 +35,11 @@ class TeamsController < ApplicationController
 
   def update
     authenticate_user!
+    upload_file = team_params[:logo]
+    team_params.delete "logo"
+    if upload_file != nil 
+      File.open("app/assets/images/logos/#{@team.url}.jpg", "wb") {|f|f.write(upload_file.read)}
+    end 
     respond_to do |format|
       if @team.update(team_params)
         format.html { redirect_to "/my/team"  }
@@ -49,6 +54,6 @@ class TeamsController < ApplicationController
       @team=Team.find_by_user_id current_user.id
     end
     def team_params
-      params.require(:team).permit(:name, :url)
+      params.require(:team).permit(:name, :url, :color)
     end
 end
