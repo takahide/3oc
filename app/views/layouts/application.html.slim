@@ -1,11 +1,27 @@
 doctype html
 html
   head
-    title
-      | Baseball
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
-    = csrf_meta_tags
-  body
-    = render 'layouts/header'
-    = yield
+    = favicon_link_tag 'favicon.ico'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png',  rel: 'apple-touch-icon',  type: 'image/png'
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width,  initial-scale=1,  maximum-scale=1,  minimum-scale=1,  user-scalable=no,  minimal-ui"
+    meta name="mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-status-bar-style" content="black"
+    title Baseball
+    = stylesheet_link_tag    "phone",  media: "all",  "data-turbolinks-track" => true
+    /= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    /= javascript_include_tag "application", "data-turbolinks-track" => true
+    /= csrf_meta_tags
+
+
+
+  body.phone
+    .statusbar-overlay
+    .panel-overlay
+    = render "application/phone/left_panel"
+    .views
+      .view.view-main
+          == yield
+
+    = javascript_include_tag "phone"

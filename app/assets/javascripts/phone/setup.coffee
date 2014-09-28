@@ -1,10 +1,10 @@
 window.F7H =
-    app: new framework7()
-    dom: Framework7.$
+  app: new Framework7()
+  dom: Framework7.$
 
-windw.Phone =
-    Views: {}
+window.Phone =
+  Views: {}
 
 Phone.Views.Main =
-    F7H.app.addView '.view-main',
-        dynamicNavbar: true
+  F7H.app.addView '.view-main',
+      dynamicNavbar: true
